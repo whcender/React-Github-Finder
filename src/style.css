@@ -1,0 +1,32 @@
+.main-gif{
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    z-index: 1;
+}
+.loadinggif{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+}
+.loadinggif img{
+    width: 450px;
+}
+.cleared{
+    display: none;
+}
+.main-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.alertx{
+    position: fixed;
+    bottom: 0;
+}
