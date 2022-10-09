@@ -16,13 +16,15 @@ export class App extends Component {
     alert: null
   }
 
-  searchUsers = (keyword) => {
+ searchUsers = (keyword) => {
     this.setState({ loading: true })
     axios.get(`https://api.github.com/search/users?q=${keyword}`)
-      .then(res => this.setState({ users: res.data.items, loading: false }))
-       if (this.state.users.length === 0) {
-        this.setAlert('No user found', 'danger')
-      }
+      .then(res => this.setState({ users: res.data.items, loading: false 
+      })).then (res => {
+        if (this.state.users.length === 0) {
+          this.setAlert('No user found', 'danger')
+        }
+      })
     }
 
   clearItem = () => {
@@ -45,6 +47,7 @@ export class App extends Component {
         clearItem={this.clearItem}
         showButton={this.state.users.length > 0 ? true : false}
         setAlert={this.setAlert}
+        users={this.state.users.length}
         />
         <Users users={this.state.users} loading={this.state.loading} />
       </>
