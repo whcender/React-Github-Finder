@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 
 
 export class Navbar extends Component {
@@ -7,9 +8,14 @@ export class Navbar extends Component {
         return (
             <nav className="navbar navbar-dark bg-primary">
                 <div className="container">
-                    <a href="#" className="navbar-brand">
+                    <Link to="/" className="navbar-brand">
                         {this.props.icon} {this.props.title}
-                    </a>
+                    </Link>
+                    <ul className="navbar-nav">
+                        <li className="nav-item">
+                            <Link to="/about" className="nav-link">About</Link>
+                        </li>
+                    </ul>
                 </div>
             </nav>
         )
