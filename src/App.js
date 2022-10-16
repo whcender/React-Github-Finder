@@ -17,6 +17,7 @@ export class App extends Component {
     loading: false,
     users: [],
     user: {},
+    repos: [],
     alert: null
   }
 
@@ -37,6 +38,14 @@ export class App extends Component {
     axios.get(`https://api.github.com/users/${username}`)
       .then(res => this.setState({
         user: res.data, loading: false
+      }))
+  }
+
+  getUserRepos = (username) => {
+    this.setState({ loading: true })
+    axios.get(`https://api.github.com/users/${username}/repos`)
+      .then(res => this.setState({
+        repos: res.data, loading: false
       }))
   }
 
@@ -70,7 +79,13 @@ export class App extends Component {
           } />
           <Route path="/about" element={<About />} />
           <Route path="/user/:login" element={ 
-            <UserDetails getUser={this.getUser} user={this.state.user} loading={this.state.loading} />
+            <UserDetails 
+            getUser={this.getUser} 
+            user={this.state.user} 
+            loading={this.state.loading} 
+            getUserRepos={this.getUserRepos}
+            repos={this.state.repos}
+            />
                   } />
         </Routes>
       </>

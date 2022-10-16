@@ -4,12 +4,14 @@ import Navbar from "./Navbar";
 import { GoMarkGithub } from "react-icons/go";
 import Loading from "./Loading";
 import { BiCurrentLocation } from "react-icons/bi";
+import Repos from "./Repos";
 
 
 
 class UserDetails extends React.Component {
     componentDidMount() {
         this.props.getUser(this.props.params.login)
+        this.props.getUserRepos(this.props.params.login)
     }
     render() {
         if (this.props.loading) {
@@ -45,9 +47,17 @@ class UserDetails extends React.Component {
                                             ? <p><a href={this.props.user.blog.includes('https://', 'http://') ? this.props.user.blog : `https://${this.props.user.blog}`}>{this.props.user.blog}</a></p>
                                             : <p>No Blog</p>
                                         }
-                                        
+                                        <div>
+                                            <span className="badge badge-primary m-1">Followers: {this.props.user.followers}</span>
+                                            <span className="badge badge-danger m-1">Following: {this.props.user.following}</span>
+                                            <span className="badge badge-success m-1">Repo: {this.props.user.public_repos}</span>
+                                        </div>
+
 
                                     </div>
+                                    <ul className="list-group list-group-flush">
+                                        <Repos repos={this.props.repos} />
+                                    </ul>
                                 </div>
                             </div>
                         </div>
